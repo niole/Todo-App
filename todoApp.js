@@ -16,8 +16,8 @@ var TodoApp = React.createClass({
       </div>
     );
   },
-  _handleAdd: function(todo) {
-    todolist.addtodo(todo);
+  _handleAdd: function(todo, deadline) {
+    todolist.addtodo(todo, deadline);
     $("form#todoForm")[0].reset();
     return this.setState(todolist);
   },
@@ -69,26 +69,28 @@ var Todoadder = React.createClass( {
   render: function() {
     return (
       <div>
-        <form id="todoForm" onSubmit={this._handleSubmit}>
-          <input type="text" name="todo" placeholder="what's on your todo list?"/>
-          <input id="datepicker" placeholder="set a deadline"/>
+        <form id="todoForm">
+          <input type="text" ref="todo" placeholder="what's on your todo list?"/>
+          <input id="datepicker" ref="datepicker" placeholder="set a deadline"/>
+          <button className="btn btn-primary" onClick={this._handleSubmit}>submit</button>
         </form>
       </div>
     );
   },
   _handleSubmit: function(event) {
     event.preventDefault();
-    var newTodo = $(event.target).find("input[name=todo]").val();
-    if (newTodo !== '') {
-      this.props.onAdd(newTodo);
+    var newTodo = this.refs.todo.getDOMNode().value.trim();
+    var newDeadline = ' ' + this.refs.datepicker.getDOMNode().value.trim();
+    if (newTodo !== '' && newDeadline !== '') {
+      this.props.onAdd(newTodo, newDeadline);
     }
   }
 });
 var todolist = {
   todos: [],
   filterText: null,
-  addtodo: function(curritem) {
-    this.todos.push(curritem);
+  addtodo: function(currTodo, currDeadline) {
+    this.todos.push([currTodo, currDeadline]);
   },
   removetodo: function(key) {
     this.todos.splice(key, 1);
@@ -109,6 +111,8 @@ var Displaytodos = React.createClass( {
 
     var listedtodos = [];
     for (var key in todos) {
+      console.log('todo it');
+      console.log(todos[key]);
       listedtodos.push(<tr >
                         <td id="todoitem" className="dropdown"><a href="#" className="dropdown-toggle" data-toggle="dropdown">{todos[key]}</a>
                          <ul className="dropdown-menu">
