@@ -105,8 +105,8 @@ var Displaytodos = React.createClass( {
   },
   render: function() {
     var filterText = this.props.filterText;
-    var todos = (filterText == null) ? this.props.todos : _.filter(this.props.todos, function(elt) {
-      return elt.indexOf(filterText) > -1;
+    var todos = (filterText === null) ? this.props.todos : _.filter(this.props.todos, function(elt) {
+      return elt[0].indexOf(filterText) > -1;
     });
 
     var listedtodos = [];
