@@ -80,7 +80,7 @@ var Todoadder = React.createClass( {
   _handleSubmit: function(event) {
     event.preventDefault();
     var newTodo = this.refs.todo.getDOMNode().value.trim();
-    var newDeadline = ' ' + this.refs.datepicker.getDOMNode().value.trim();
+    var newDeadline = this.refs.datepicker.getDOMNode().value.trim();
     if (newTodo !== '' && newDeadline !== '') {
       this.props.onAdd(newTodo, newDeadline);
     }
@@ -114,7 +114,8 @@ var Displaytodos = React.createClass( {
       console.log('todo it');
       console.log(todos[key]);
       listedtodos.push(<tr >
-                        <td id="todoitem" className="dropdown"><a href="#" className="dropdown-toggle" data-toggle="dropdown">{todos[key]}</a>
+                        <td id="todoitem" className="dropdown"><a href="#" className="dropdown-toggle" data-toggle="dropdown">{todos[key][0]}</a>
+                        &nbsp;&nbsp;&nbsp;<span className="label label-default">{todos[key][1]}</span>
                          <ul className="dropdown-menu">
                           <li><a id={key} href="#" onClick={this._handleItemClick}>delete</a></li>
                          </ul>
