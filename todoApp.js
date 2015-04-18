@@ -22,8 +22,8 @@ var TodoApp = React.createClass({
     return this.setState(todolist);
   },
   _handleSort: function() {
-    todolist.todos = todolist.todos.sort();
-    return this.setState(todolist);
+    todolist.todos = _.sortBy(todolist.todos, 'deadline');
+    this.setState(todolist);
   },
   _handleDelete: function(key) {
     todolist.removetodo(key);
@@ -90,7 +90,7 @@ var todolist = {
   todos: [],
   filterText: null,
   addtodo: function(currTodo, currDeadline) {
-    this.todos.push([currTodo, currDeadline]);
+    this.todos.push({'todo': currTodo, 'deadline':currDeadline});
   },
   removetodo: function(key) {
     this.todos.splice(key, 1);
@@ -111,11 +111,11 @@ var Displaytodos = React.createClass( {
 
     var listedtodos = [];
     for (var key in todos) {
-      console.log('todo it');
-      console.log(todos[key]);
+//      console.log('todo it');
+//      console.log(todos[key]);
       listedtodos.push(<tr >
-                        <td id="todoitem" className="dropdown"><a href="#" className="dropdown-toggle" data-toggle="dropdown">{todos[key][0]}</a>
-                        &nbsp;&nbsp;&nbsp;<span className="label label-default">{todos[key][1]}</span>
+                        <td id="todoitem" className="dropdown"><a href="#" className="dropdown-toggle" data-toggle="dropdown">{todos[key].todo}</a>
+                        &nbsp;&nbsp;&nbsp;<span className="label label-default">{todos[key].deadline}</span>
                          <ul className="dropdown-menu">
                           <li><a id={key} href="#" onClick={this._handleItemClick}>delete</a></li>
                          </ul>
