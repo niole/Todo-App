@@ -35,7 +35,7 @@ var TodoApp = React.createClass({
     } else {
       todolist.filterText = null;
     }
-    return this.setState(todolist);
+    this.setState(todolist);
   },
 });
 
@@ -47,7 +47,7 @@ var FilterForm = React.createClass( {
   render: function() {
     return (
       <form onSubmit={this._handleSubmit}>
-        <input type="text" name="filter"  placeholder="check if it's in the list"/>
+        <input type="text" name="filter" placeholder="check if it's in the list"/>
       </form>
     );
   },
@@ -106,7 +106,7 @@ var Displaytodos = React.createClass( {
   render: function() {
     var filterText = this.props.filterText;
     var todos = (filterText === null) ? this.props.todos : _.filter(this.props.todos, function(elt) {
-      return elt[0].indexOf(filterText) > -1;
+      return elt.todo.indexOf(filterText) > -1;
     });
 
     var listedtodos = [];
