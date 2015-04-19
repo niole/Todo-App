@@ -6,12 +6,12 @@ var TodoApp = React.createClass({
   render: function() {
     return (
       <div className='container-fluid' style={{'textAlign':'center'}}>
+        <FilterForm todos={this.state.todos} onFilter={this._handleFilter}/><br/>
         <div className="page-header">
         <h1>Todo Lists..<small>...make one!</small></h1>
         </div>
         <Displaytodos todos={this.state.todos} filterText={this.state.filterText} onDelete={this._handleDelete}/>
         <Todoadder onAdd={this._handleAdd} />
-        <FilterForm todos={this.state.todos} onFilter={this._handleFilter}/><br/>
         <button className="btn btn-primary" onClick={this._handleSort}>sort by deadline</button>
       </div>
     );
@@ -46,9 +46,15 @@ var FilterForm = React.createClass( {
   },
   render: function() {
     return (
-      <form onSubmit={this._handleSubmit}>
-        <input type="text" name="filter" placeholder="check if it's in the list"/>
-      </form>
+      <nav className="navbar navbar-default">
+        <div className="container-fluid">
+          <form className="navbar-form navbar-left" role="search" onSubmit={this._handleSubmit}>
+            <div className="form-group">
+              <input type="text" name="filter" className="form-control" placeholder="check if it's in the list"/>
+            </div>
+          </form>
+        </div>
+      </nav>
     );
   },
   _handleSubmit: function(event) {
