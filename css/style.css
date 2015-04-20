@@ -1,0 +1,39 @@
+/* visual styles */
+.thing {
+  background:#5FD4B1;
+  border: 10px solid #35D4A4;
+  padding-top:15px;
+  padding-bottom:15px;
+}
+.table {
+  padding-top:30px;
+  padding-bottom:15px;
+  border:2px solid #33001A;
+  margin: 0 auto;
+}
+
+.todos {
+  min-width:50%;
+  padding-top:30px;
+  padding-bottom:15px;
+  border:2px solid #33001A;
+  background:#FFFFFF;
+  margin: 0 auto;
+
+}
+.container-fluid {
+  width:50%;
+
+}
+body {
+  padding-bottom:40px;
+  color:#00ff00;
+
+}
+
+/* centering styles for jsbin */
+html,
+body {
+  margin:0;
+  padding:0;
+}

@@ -5,14 +5,14 @@ var TodoApp = React.createClass({
   getInitialState: function() { return todolist; },
   render: function() {
     return (
-      <div className='container-fluid' style={{'textAlign':'center'}}>
+      <div className='container-fluid' style={{"textAlign":"center"}}>
         <FilterForm todos={this.state.todos} onFilter={this._handleFilter}/><br/>
-        <div className="page-header">
-        <h1>Todo Lists..<small>...make one!</small></h1>
-        </div>
+        <div className="thing">
+        <h1 className="h1">Todo Lists</h1>
         <Displaytodos todos={this.state.todos} filterText={this.state.filterText} onDelete={this._handleDelete}/>
         <Todoadder onAdd={this._handleAdd} />
         <button className="btn btn-primary" onClick={this._handleSort}>sort by deadline</button>
+        </div>
       </div>
     );
   },
@@ -76,7 +76,7 @@ var Todoadder = React.createClass( {
     return (
       <div>
         <form id="todoForm">
-          <input type="text" ref="todo" placeholder="what's on your todo list?"/>
+          <input type="text" ref="todo" placeholder="add a todo"/>
           <input id="datepicker" ref="datepicker" placeholder="set a deadline"/>
           <button className="btn btn-primary" onClick={this._handleSubmit}>submit</button>
         </form>
@@ -117,10 +117,8 @@ var Displaytodos = React.createClass( {
 
     var listedtodos = [];
     for (var key in todos) {
-//      console.log('todo it');
-//      console.log(todos[key]);
-      listedtodos.push(<tr >
-                        <td id="todoitem" className="dropdown"><a href="#" className="dropdown-toggle" data-toggle="dropdown">{todos[key].todo}</a>
+      listedtodos.push(<tr className="list-group-item">
+                        <td className="dropdown"><a href="#" className="dropdown-toggle" data-toggle="dropdown">{todos[key].todo}</a>
                         &nbsp;&nbsp;&nbsp;<span className="label label-default">{todos[key].deadline}</span>
                          <ul className="dropdown-menu">
                           <li><a id={key} href="#" onClick={this._handleItemClick}>delete</a></li>
@@ -129,11 +127,13 @@ var Displaytodos = React.createClass( {
                       </tr>);
     }
     return (
-        <table className="table">
-          <tbody>
-            {listedtodos}
-          </tbody>
-        </table>
+      <div className="todos">
+      <table>
+        <tbody className="list-group">
+        </tbody>
+          {listedtodos}
+      </table>
+      </div>
     );
   },
   _handleItemClick: function(event) {
