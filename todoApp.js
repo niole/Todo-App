@@ -8,10 +8,12 @@ var TodoApp = React.createClass({
       <div className='container-fluid' style={{"textAlign":"center"}}>
         <FilterForm todos={this.state.todos} onFilter={this._handleFilter}/><br/>
         <div className="thing">
-        <h1 className="h1">Todo Lists</h1>
-        <Displaytodos todos={this.state.todos} filterText={this.state.filterText} onDelete={this._handleDelete}/>
-        <Todoadder onAdd={this._handleAdd} />
-        <button className="btn btn-primary" onClick={this._handleSort}>sort by deadline</button>
+          <div className="page-header">
+            <h1>Todo List</h1>
+          </div>
+          <Displaytodos todos={this.state.todos} filterText={this.state.filterText} onDelete={this._handleDelete}/>
+          <Todoadder onAdd={this._handleAdd} />
+          <button className="btn btn-primary" onClick={this._handleSort}>sort by deadline</button>
         </div>
       </div>
     );

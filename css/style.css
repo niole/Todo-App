@@ -1,7 +1,7 @@
 /* visual styles */
 .thing {
-  background:#5FD4B1;
-  border: 10px solid #35D4A4;
+  background:#DDE2C6;
+  border: 10px solid #BBC5AA;
   padding-top:15px;
   padding-bottom:15px;
 }
@@ -9,20 +9,16 @@
   padding-left: 15px;
   padding-top:30px;
   padding-bottom:15px;
-  border:2px solid #33001A;
-  background:#FFFFFF;
+  background:#E6EED6;
   margin: 0 auto;
 
 }
-/*
-.container-fluid {
-  width:50%;
-}
-*/
 body {
   padding-bottom:40px;
-  color:#00ff00;
-
+}
+h1 {
+  font-family: Calibri;
+  text-color: green;
 }
 
 /* centering styles for jsbin */
