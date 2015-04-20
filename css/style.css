@@ -5,15 +5,8 @@
   padding-top:15px;
   padding-bottom:15px;
 }
-.table {
-  padding-top:30px;
-  padding-bottom:15px;
-  border:2px solid #33001A;
-  margin: 0 auto;
-}
-
 .todos {
-  min-width:50%;
+  padding-left: 15px;
   padding-top:30px;
   padding-bottom:15px;
   border:2px solid #33001A;
@@ -21,10 +14,11 @@
   margin: 0 auto;
 
 }
+/*
 .container-fluid {
   width:50%;
-
 }
+*/
 body {
   padding-bottom:40px;
   color:#00ff00;
