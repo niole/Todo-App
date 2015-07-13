@@ -1,17 +1,25 @@
 var express = require('express');
 var app = express();
+var path = require('path');
+var http = require('http').Server(app);
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 
-app.use(express.static(__dirname));
 
-app.get('/', function(req, res){
-    res.sendFile(__dirname + '/todoApp.html');
+/* bodyParser */
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
+
+app.use(express.static(__dirname+'/public'), function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next();
 });
 
-var server = app.listen(2993, function () {
-
-  var host = server.address().address;
-  var port = server.address().port;
-
-  console.log('Example app listening at http://%s:%s', host, port);
-
+app.get('/', function(req,res) {
+  res.sendFile(__dirname+'/public/todoApp.html');
 });
+
+
+http.listen(2993);
